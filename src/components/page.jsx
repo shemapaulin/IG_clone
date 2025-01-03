@@ -3,111 +3,115 @@ import jacky from '../assets/jacky.jpeg';
 import paulin from '../assets/paulin.jpeg';
 import sunny from '../assets/sunny.jpeg';
 import yampano from '../assets/yampano.jpeg';
-import fabrizio from '../assets/fabrizio.jpeg'
-import rashford from '../assets/rashford.jpeg'
+import fabrizio from '../assets/fabrizio.jpeg';
+import rashford from '../assets/rashford.jpeg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 const Page = () => {
+  const stories = [
+    { src: yampano, name: "yampano_wa_boi" },
+    { src: sunny, name: "sunny_cissy" },
+    { src: jacky, name: "uwase_ja_sherry" },
+  ];
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white w-[460px] h-[800px]">
+      <div className="bg-white w-full max-w-[460px] h-screen overflow-y-auto shadow-lg">
+        {/* Navbar */}
         <nav className="flex justify-between items-center p-4">
-          <h1 className="text-4xl font-dancing font-bold">Instagram</h1>
-          <div className="flex flex-row gap-10">
-            <img src="heart-regular.svg" className="w-8" />
-            <img src="fb-msg.svg" className="w-10" />
+          <h1 className="text-2xl md:text-4xl font-dancing font-bold">Instagram</h1>
+          <div className="flex flex-row gap-4 relative">
+            <img src="heart-regular.svg" className="w-6 md:w-8" alt="Heart" />
+            <div className="relative">
+              <img src="fb-msg.svg" className="w-6 md:w-8" alt="Messenger" />
+              {/* Notification Badge */}
+              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                4
+              </div>
+            </div>
           </div>
         </nav>
-        {/** Stories */}
-        <div className="flex justify-around items-center p-4 space-x-4 overflow-hidden">
-          {/* Paulin (No Border) */}
+
+        {/* Stories */}
+        <div className="flex justify-center gap-4 items-center px-4 py-2">
+          {/* Your Story */}
           <div className="flex flex-col items-center">
-            <div className="w-24 h-24 rounded-full p-1">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full p-1 relative">
               <img
                 src={paulin}
                 className="w-full h-full rounded-full object-cover"
                 alt="Paulin"
               />
-            </div>
-            <p className="mt-2 text-sm font-bold text-gray-800">your story</p>
-          </div>
-
-          {/* Yampano */}
-          <div className="flex flex-col items-center">
-            <div className="w-24 h-24 rounded-full border-4 border-red-500 p-1">
-              <img
-                src={yampano}
-                className="w-full h-full rounded-full object-cover"
-                alt="Yampano"
+              <FontAwesomeIcon
+                icon={faCirclePlus}
+                style={{ color: "#74C0FC" }}
+                className="absolute bottom-0 right-0 z-10 w-5 h-5 md:w-7 md:h-7 bg-white rounded-full"
               />
             </div>
-            <p className="mt-2 text-sm font-bold text-gray-800">yampano_wa_boi</p>
+            <p className="mt-2 text-xs md:text-sm font-bold text-gray-800">your story</p>
           </div>
 
-          {/* Sunny */}
-          <div className="flex flex-col items-center">
-            <div className="w-24 h-24 rounded-full border-4 border-red-500 p-1">
-              <img
-                src={sunny}
-                className="w-full h-full rounded-full object-cover"
-                alt="Sunny"
-              />
+          {/* Other Stories */}
+          {stories.map((story, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-red-500 p-1">
+                <img
+                  src={story.src}
+                  className="w-full h-full rounded-full object-cover"
+                  alt={story.name}
+                />
+              </div>
+              <p className="mt-2 text-xs md:text-sm font-bold text-gray-800">{story.name}</p>
             </div>
-            <p className="mt-2 text-sm font-bold text-gray-800">sunny_cissy</p>
+          ))}
+        </div>
+
+        {/* Post */}
+        <div className="">
+          {/* Post Header */}
+          <div className="flex justify-between items-center mb-4 pr-4 pl-4">
+            <div className="flex items-center gap-2">
+              <img src={fabrizio} className="w-8 h-8 rounded-full" alt="Fabrizio" />
+              <div className="text-sm">
+                <p className="font-medium">fabriziorom</p>
+                <p className="text-gray-500">Old Trafford</p>
+              </div>
+              <img src="/verif.svg" className="w-4 h-4 text-blue-500" alt="Verified" />
+            </div>
+            <img src="/menu.svg" className="w-6" alt="Menu" />
           </div>
 
-          {/* Jacky */}
-          <div className="flex flex-col items-center">
-            <div className="w-24 h-24 rounded-full border-4 border-red-500 p-1">
-              <img
-                src={jacky}
-                className="w-full h-full rounded-full object-cover"
-                alt="Jacky"
-              />
+          {/* Post Image */}
+          <div className="relative">
+            <img src={rashford} className="h-[420px] w-full" alt="Rashford" />
+          </div>
+
+          {/* Post Actions */}
+          <div className="flex justify-between items-center mt-3 pr-3 pl-3">
+            <div className="flex space-x-4">
+              <div className="flex items-center space-x-1">
+                <img src="/heart-regular.svg" className="w-6 h-6" alt="Like" />
+                <span className="text-sm">7,287</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <img src="/comment.svg" className="w-6 h-6" alt="Comment" />
+                <span className="text-sm">42</span>
+              </div>
+              <img src="/share.svg" className="w-6 h-6" alt="Share" />
             </div>
-            <p className="mt-2 text-sm font-bold text-gray-800">uwase_ja_sherry</p>
+            <img src="/bookmark.svg" className="w-6 h-6" alt="Bookmark" />
           </div>
         </div>
 
-        {/** post */}
-        <div className='flex flex-row justify-between items-center'>
-            <div className='flex flex-row gap-2 p-2'>
-                <img src={fabrizio} className='w-8 h-8 rounded-full'/>
-                <p className='flex flex-col gap-2 '>
-                    <p className='h-2 font-medium'>fabriziorom</p>
-                    <p className='h- font-bold'>Old Traford</p>
-                </p>
-                <img src='/verif.svg' className='text-blue'/>
-            </div>
-            <img src='/menu.svg'/>
+        {/* Footer */}
+        <div className="flex justify-between items-center p-2 mt-4 border-t">
+          <img src="/house.svg" className="w-7 h-7" alt="Home" />
+          <img src="/search.svg" className="w-7 h-7" alt="Search" />
+          <img src="/add.svg" className="w-8 h-8" alt="Add" />
+          <img src="/film.svg" className="w-8 h-8" alt="Reels" />
+          <img src={paulin} className="w-7 h-7 rounded-full" alt="Profile" />
         </div>
-        <div>
-            <img src={rashford} className='h-[420px] w-full '/>
-        </div>
-       <div className='flex flex-row justify-between items-center p-3'>
-       <div className='flex flex-row space-x-1 '>
-            <icon className='flex flex-row justify-center items-center gap-1'>
-                <img src='/heart-regular.svg' className='w-7 h-9'/>
-                <h3>7,287</h3>
-            </icon>
-            <icon className='flex flex-row justify-center items-center gap-1'>
-                <img src='/comment.svg' className='w-7 h-9'/>
-                <p>42</p>
-            </icon>
-            <icon>
-                <img src='/share.svg' className='w-7 h-9'/>
-            </icon>
-        </div>
-
-        <img src='/bookmark.svg' className='w-7 h-9'/>
-       </div>
-       {/**footer */}
-       <div className='flex flex-row space-x-14 justify-center items-center'>
-        <img src='/house.svg' className='w-8 h-8'/>
-        <img src='/search.svg' className='w-8 h-8'/>
-        <img src='/add.svg' className='w-8 h-8'/>
-        <img src='/film.svg' className='w-8 h-8'/>
-        <img src={paulin} className='w-8 h-8 rounded-full'/> 
-       </div>
       </div>
     </div>
   );
